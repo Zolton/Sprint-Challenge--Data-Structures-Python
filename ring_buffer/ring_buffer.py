@@ -6,12 +6,9 @@ class RingBuffer:
 
   def append(self, item):
     ringList = self.storage
-    print("index 0 is: ", ringList[0])
-    print("index 1 is: ", ringList[1])
     if self.current == self.capacity:
       self.current = 0
     ringList[self.current] = item
-    print("Current index is: ", self.current)
     self.current += 1
 
   def get(self):
