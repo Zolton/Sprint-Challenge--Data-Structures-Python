@@ -2,12 +2,13 @@ import time
 import sys
 #sys.path.append('../doubly_linked_list')
 from doubly_linked_list import DoublyLinkedList
+from binary_search_tree import BinarySearchTree
 
 
 start_time = time.time()
 
-LinkList1 = DoublyLinkedList()
-LinkList2 = DoublyLinkedList
+
+
 
 f = open('names_1.txt', 'r')
 LinkList1 = f.read().split("\n")  # List containing 10000 names
@@ -22,21 +23,32 @@ f.close()
 # care about index numbers or location of any particular name - 
 # Only care whether it exists or not
 
+#duplicates = []
+
+# for name_1 in LinkList1:
+#     for name_2 in LinkList2:
+#         if name_1 == name_2:
+#             duplicates.append(name_1)
+
+# Binary trees really are a brilliant bit of code.  Computer doesn't give a shit whether
+# it's sorting numbers or strings - its all the same.  Sort 1 list into a binary
+# tree, and traverse it with the second - chopping it in half every operation
+# O(logn)
+
+# Prime the pump - start with real name in middle of alphabet, 
+# make it fake so it'll never come back, and organize list around it
+bst = BinarySearchTree("Mikaelz Mcmahz")
+
 duplicates = []
 
 for name_1 in LinkList1:
-    for name_2 in LinkList2:
-        if name_1 == name_2:
-            duplicates.append(name_1)
+    bst.insert(name_1)
+
+for name_2 in LinkList2:
+    if bst.contains(name_2) == None:
+        duplicates.append(name_2)
 
 end_time = time.time()
 print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
 print (f"runtime: {end_time - start_time} seconds")
 
-# void rec_fun(int i,int n) {
-#     if (!(i<n)) return;
-#     func(i);
-#     rec_fun(i+1,n);
-# }
-# ...
-# rec_fun(0,n);
