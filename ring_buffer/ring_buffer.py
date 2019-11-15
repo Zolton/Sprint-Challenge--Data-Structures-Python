@@ -16,7 +16,6 @@ class RingBuffer:
 
   def get(self):
     cleanList = [i for i in self.storage if i != None]
-    
     return cleanList
 
 """ python
